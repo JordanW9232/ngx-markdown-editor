@@ -61,6 +61,10 @@
         }
       }
 
+      .btn-group:empty {
+        display: none;
+      }
+
       .btn {
         margin-bottom: 0;
       }

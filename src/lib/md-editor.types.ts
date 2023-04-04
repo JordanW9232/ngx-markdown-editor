@@ -1,7 +1,7 @@
 export interface MdEditorOption {
   showPreviewPanel?: boolean           // Show preview panel, Default is `true`
   showBorder?: boolean                 // Show editor component's border
-  hideIcons?: Array<string>            // ['Bold', 'Italic', 'Heading', 'Reference', 'Link', 'Image', 'Ul', 'Ol', 'Code', 'TogglePreview', 'FullScreen'], Default is empty
+  hideIcons?: Array<MdButton>          // ['Bold', 'Italic', 'Heading', 'Strikethrough', 'Reference', 'Link', 'Image', 'Ul', 'Ol', 'Code', 'TogglePreview', 'FullScreen'], Default is ['Strikethrough']
   usingFontAwesome5?: boolean          // Using font awesome with version 5, Default is false
   fontAwesomeVersion?: '4' | '5' | '6' // FontAwesome Version, 4/5/6, default is 4
   scrollPastEnd?: number               // The option for ace editor
@@ -11,12 +11,28 @@ export interface MdEditorOption {
   customRender?: CustomRender          // Custom markedjs render
   customIcons?: CustomIconOptions      // Custom icons for buttons
   locales?: MdEditorLocaleOptions      // Localization
+  buttonGroups?: Array<MdButtonGroup>
 }
+
+export const MdButtonValues = ['Bold', 'Italic', 'Heading', 'Strikethrough', 'Reference', 'Link', 'Image', 'Ul', 'Ol', 'Code', 'TogglePreview', 'FullScreen'] as const;
+export type MdButton = typeof MdButtonValues[number];
+export type MdButtonGroup = Array<MdButton | string>;
+
+// todo - figure this out
+
+export const DEFAULT_BUTTON_GROUPS: Array<MdButtonGroup> = [
+  ['Bold', 'Italic', 'Heading', 'Strikethrough', 'Reference'],
+  ['Link', 'Image'],
+  ['Ul', 'Ol', 'Code'],
+  ['TogglePreview'],
+  ['FullScreen']
+];
 
 export interface CustomIconOptions {
   Bold?: CustomIcon
   Italic?: CustomIcon
   Heading?: CustomIcon
+  Strikethrough?: CustomIcon
   Reference?: CustomIcon
   Link?: CustomIcon
   Image?: CustomIcon
@@ -43,6 +59,7 @@ export interface MdEditorLocale {
     Bold?: MdButtonInserterLocale
     Italic?: MdButtonInserterLocale
     Heading?: MdButtonInserterLocale
+    Strikethrough?: MdButtonInserterLocale
     Reference?: MdButtonInserterLocale
     Link?: MdButtonLocale
     Image?: MdButtonLocale
@@ -69,6 +86,7 @@ export const DEFAULT_LOCALES: MdEditorLocaleOptions = {
       Bold: { title: 'Bold', initText: 'Bold Text' },
       Italic: { title: 'Italic', initText: 'Italic Text' },
       Heading: { title: 'Heading' },
+      Strikethrough: { title: 'Strikethrough', initText: 'Strikethrough Text' },
       Reference: { title: 'Reference' },
       Link: { title: 'Link' },
       Image: { title: 'Image' },
@@ -132,6 +150,7 @@ export const DEFAULT_ICONS: DefaultIconOptions = {
     Bold: { fontClass: 'fa fa-bold' },
     Italic: { fontClass: 'fa fa-italic' },
     Heading: { fontClass: 'fa fa-header' },
+    Strikethrough: { fontClass: 'fa fa-strikethrough' },
     Reference: { fontClass: 'fa fa-quote-left' },
     Link: { fontClass: 'fa fa-link' },
     Image: { fontClass: 'fa fa-image' },
@@ -148,6 +167,7 @@ export const DEFAULT_ICONS: DefaultIconOptions = {
     Bold: { fontClass: 'fas fa-bold' },
     Italic: { fontClass: 'fas fa-italic' },
     Heading: { fontClass: 'fas fa-heading' },
+    Strikethrough: { fontClass: 'fas fa-strikethrough' },
     Reference: { fontClass: 'fas fa-quote-left' },
     Link: { fontClass: 'fas fa-link' },
     Image: { fontClass: 'fas fa-image' },
@@ -164,6 +184,7 @@ export const DEFAULT_ICONS: DefaultIconOptions = {
     Bold: { fontClass: 'fa-solid fa-bold' },
     Italic: { fontClass: 'fa-solid fa-italic' },
     Heading: { fontClass: 'fa-solid fa-heading' },
+    Strikethrough: { fontClass: 'fa-solid fa-strikethrough' },
     Reference: { fontClass: 'fa-solid fa-quote-left' },
     Link: { fontClass: 'fa-solid fa-link' },
     Image: { fontClass: 'fa-solid fa-image' },

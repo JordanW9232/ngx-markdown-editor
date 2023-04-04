@@ -11,7 +11,7 @@ declare let hljs: any;
 const DEFAULT_EDITOR_OPTION: MdEditorOption = {
   showPreviewPanel: true,
   showBorder: true,
-  hideIcons: [],
+  hideIcons: ['Strikethrough'],
   usingFontAwesome5: false,
   scrollPastEnd: 0,
   enablePreviewContentClick: false,
@@ -240,6 +240,10 @@ export class MarkdownEditorComponent implements ControlValueAccessor, Validator 
       case 'Heading':
         initText = this.options.locales[this.locale].Buttons.Heading.initText ?? this.options.locales[this.locale].Buttons.Heading.title;
         selectedText = `# ${selectedText || initText}`;
+        break;
+      case 'Strikethrough':
+        initText = this.options.locales[this.locale].Buttons.Strikethrough.initText ?? this.options.locales[this.locale].Buttons.Strikethrough.title;
+        selectedText = `~~${selectedText || initText}~~`;
         break;
       case 'Reference':
         initText = this.options.locales[this.locale].Buttons.Reference.initText ?? this.options.locales[this.locale].Buttons.Reference.title;

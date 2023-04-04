@@ -11,8 +11,10 @@
         <button class="btn btn-sm btn-default" type="button" [attr.title]="options.locales[locale].Buttons.Heading.title" (click)="insertContent('Heading')" *ngIf="!hideIcons.Heading">
           <i [class]="options.customIcons.Heading.fontClass"></i>
         </button>
-        <button class="btn btn-sm btn-default" type="button" [attr.title]="options.locales[locale].Buttons.Reference.title" (click)="insertContent('Reference')"
-          *ngIf="!hideIcons.Reference">
+        <button class="btn btn-sm btn-default" type="button" [attr.title]="options.locales[locale].Buttons.Strikethrough.title" (click)="insertContent('Strikethrough')" *ngIf="!hideIcons.Strikethrough">
+          <i [class]="options.customIcons.Strikethrough.fontClass"></i>
+        </button>
+        <button class="btn btn-sm btn-default" type="button" [attr.title]="options.locales[locale].Buttons.Reference.title" (click)="insertContent('Reference')" *ngIf="!hideIcons.Reference">
           <i [class]="options.customIcons.Reference.fontClass"></i>
         </button>
       </div>
